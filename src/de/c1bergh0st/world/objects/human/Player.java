@@ -28,6 +28,9 @@ public class Player extends Human{
     @Override
     public void tick() {
         super.tick();
+        if(currWeapon != null){
+            currWeapon.tick();
+        }
     }
 
 
@@ -43,7 +46,7 @@ public class Player extends Human{
             List<Interactable> interactables = world.getInteractables();
             for (Interactable inter: interactables){
                 if(kone.intersects(inter.getInteractionField())){
-                    inter.interact();
+                    inter.interact(this);
                     lastSucessfulUse = System.currentTimeMillis();
                     Debug.send("Used " + inter.toString());
                     break;
@@ -51,14 +54,14 @@ public class Player extends Human{
             }
         }
         if(action == Action.RELOAD && lastSucessfulUse + INTERACTIONDELAY < System.currentTimeMillis()){
-            if(weapon != null){
-                weapon.reload();
+            if(currWeapon != null){
+                currWeapon.reload();
                 lastSucessfulUse = System.currentTimeMillis();
             }
         }
         if(action == Action.SHOOT){
-            if(weapon != null){
-                weapon.fire();
+            if(currWeapon != null){
+                currWeapon.fire();
             }
         }
     }

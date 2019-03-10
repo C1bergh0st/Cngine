@@ -31,8 +31,14 @@ public class CLI {
                         break;
                     }
                 }
-                if(!found){
-                    Debug.send("Cound not recognize \"" + line + "\"");
+                if(!found && !line.matches("help")){
+                    Debug.send("Cound not recognize \"" + line + "\", type \"help\" for help");
+                }
+                if(line.matches("help")){
+                    Debug.send("Available Commands");
+                    for(Command c: Commands.values()){
+                        Debug.send(c.getInfo());
+                    }
                 }
             }
         } catch (IOException e) {

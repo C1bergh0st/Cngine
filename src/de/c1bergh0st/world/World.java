@@ -1,17 +1,15 @@
 package de.c1bergh0st.world;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import de.c1bergh0st.damage.HitBox;
 import de.c1bergh0st.damage.Team;
+import de.c1bergh0st.debug.DrawUtil;
 import de.c1bergh0st.debug.Util;
 import de.c1bergh0st.gamecode.MainGame;
 import de.c1bergh0st.geometry.Vector;
@@ -21,18 +19,16 @@ import de.c1bergh0st.world.interfaces.Interactable;
 import de.c1bergh0st.world.interfaces.Layer;
 import de.c1bergh0st.world.interfaces.Solid;
 import de.c1bergh0st.world.interfaces.Tickable;
-import de.c1bergh0st.world.loader.DevLoader;
-import de.c1bergh0st.world.loader.WorldLoader;
 import de.c1bergh0st.world.objects.Active;
-import de.c1bergh0st.world.objects.Floor;
 import de.c1bergh0st.world.objects.Wall;
-import de.c1bergh0st.world.objects.human.Human;
-import de.c1bergh0st.world.objects.human.Player;
+import de.c1bergh0st.world.objects.human.Controller;
+import de.c1bergh0st.world.objects.human.npc.Node;
+import de.c1bergh0st.world.objects.human.npc.NodeProvider;
 import de.c1bergh0st.world.terminal.CLI;
 
 public class World {
     public static final int MAX = 25;
-    public static final double SCALE = 1.2;
+    public static final double SCALE = 1;
     private List<Tickable> tickables;
     private HashMap<Layer, List<Drawable>> drawLayers;
     private List<Collisions> collisionables;
@@ -45,6 +41,7 @@ public class World {
     private MainGame game;
     private Controller controller;
     private CLI commandLine;
+    private NodeProvider nodeProvider;
     public static boolean devDraw = true;
     private boolean paused;
     
@@ -64,7 +61,7 @@ public class World {
         solids = new LinkedList<Solid>();
         controller = new Controller(this);
         walls = new Wall[MAX][MAX];
-        
+        nodeProvider = new NodeProvider(this);
         
         commandLine = new CLI();
     }
@@ -160,6 +157,11 @@ public class World {
             for(Drawable d : (LinkedList<Drawable>)drawLayers.get(l)){
                 d.draw(gg);
             }
+            if(l == Layer.FLOOR && devDraw){
+                for(Node n: nodeProvider.getNodes()){
+                    n.draw(gg);
+                }
+            }
         }
         if(devDraw){
             for(HitBox h : hitboxes){
@@ -177,7 +179,11 @@ public class World {
     public MainGame getGame(){
         return game;
     }
-    
+
+    public NodeProvider getNodeProvider(){
+        return nodeProvider;
+    }
+
     public void setCenter(Active a){
         if(a == null){
             throw new NullPointerException("You cannot Center on Nothing!");

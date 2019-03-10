@@ -18,13 +18,6 @@ public class WorldUtil {
             }
         }
     }
-    
-    public static void drawEdge(Graphics2D gg){
-        int size = 5;
-        Util.drawRect(new Rectangle2D.Double(0, -size, World.MAX, size), gg, Color.RED);
-        Util.drawRect(new Rectangle2D.Double(-size, -size, size, size * 2 + World.MAX), gg, Color.RED);
-        Util.drawRect(new Rectangle2D.Double(World.MAX, -size, size, World.MAX + size * 2), gg, Color.RED);
-        Util.drawRect(new Rectangle2D.Double(0, World.MAX, World.MAX, size), gg, Color.RED);
-    }
+
     
 }

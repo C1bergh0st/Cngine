@@ -8,6 +8,9 @@ import de.c1bergh0st.world.World;
 import de.c1bergh0st.world.loader.DevLoader;
 import de.c1bergh0st.world.objects.Wall;
 import de.c1bergh0st.world.objects.human.DevDummy;
+import de.c1bergh0st.world.objects.human.Human;
+import de.c1bergh0st.world.objects.human.npc.NodeProvider;
+import de.c1bergh0st.world.objects.human.weapons.DevGun;
 
 public enum Commands implements Command{
     QUIT("quit"){
@@ -15,7 +18,9 @@ public enum Commands implements Command{
         @Override
         public void execute(World world, String line) {
             System.out.println("quits");
+            System.exit(0);
         }
+
     }, WALL("wall " + POSITIVENUMBER + "," + POSITIVENUMBER + "(,.*=)?"){
 
         @Override
@@ -108,8 +113,29 @@ public enum Commands implements Command{
             System.out.println("shouldLoad");
         }
         
+    }, DEVGUN("devGun " + POSITIVENUMBER + SEP + POSITIVENUMBER + SEP + POSITIVENUMBER + SEP + FLOAT + SEP + FLOAT + SEP + POSITIVENUMBER){
+
+        @Override
+        public void execute(World world, String line) {
+            String[] inputs = separateLine(line);
+            int rpm = Integer.parseInt(inputs[0]);
+            int magsize = Integer.parseInt(inputs[1]);
+            int dmg = Integer.parseInt(inputs[2]);
+            double length = Double.parseDouble(inputs[3]);
+            double speed = Double.parseDouble(inputs[4]);
+            int slot = Integer.parseInt(inputs[5]);
+            Human p = world.getController().getTarget();
+            p.setWeapon(new DevGun(p, rpm, magsize, dmg,length, speed), slot);
+        }
+    }, RELOADNODES("reloadnodes"){
+        @Override
+        public void execute(World world, String line) {
+            NodeProvider nodeProvider = world.getNodeProvider();
+            nodeProvider.reload();
+        }
     };
-    
+
+
     
     private String regex;
     
@@ -119,12 +145,20 @@ public enum Commands implements Command{
         }
         this.regex = regex;
     }
-    
+
+    public String getInfo(){
+        //TODO: implement info
+        return getRegex();
+    }
     
     @Override
     public String getRegex() {
         return regex;
     }
 
+    private static String[] separateLine(String line){
+        String onlyArgs = line.substring(line.indexOf(" ") + 1);
+        return  onlyArgs.split(SEP);
+    }
 
 }

@@ -68,6 +68,6 @@ public class Vector extends Point2D.Double{
     }
     
     public String toString(){
-        return "[" + x + ";" + y + "]";
+        return Util.posconv(x, y);
     }
 }

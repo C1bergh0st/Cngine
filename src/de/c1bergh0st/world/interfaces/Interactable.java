@@ -5,10 +5,11 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
 import de.c1bergh0st.debug.Util;
+import de.c1bergh0st.world.objects.human.Human;
 
 public interface Interactable {
     
-    public void interact();
+    public void interact(Human human);
     
     public void setEnabled(boolean enabled);
     

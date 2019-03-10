@@ -34,16 +34,26 @@ public class ImageProvider {
     }
     
     private void lodFallBack() {
-        int size = Util.TILESIZE;
-        BufferedImage temp = new BufferedImage(size, size, BufferedImage.TYPE_INT_RGB);
+        fallBack = getErrorImage(Util.TILESIZE, Util.TILESIZE);
+    }
+
+    public static BufferedImage getErrorImage(int width, int height){
+        BufferedImage temp = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         Graphics g = temp.getGraphics();
         g.setColor(Color.PINK);
-        g.fillRect(0, 0, size, size);
+        g.fillRect(0, 0, width, height);
         g.setColor(Color.WHITE);
-        g.drawRect(0, 0, size, size);
-        g.dispose();
-        fallBack = temp;
+        g.drawRect(0, 0, width, height);
+        g.setColor(Color.BLACK);
+        for(int i = 0; i < (width / 100); i++){
+            for(int j = 0; j < (height / 100) + 1; j++){
+                g.drawString("ERROR", i * 100, j * 100 + 50);
+                g.drawString("Image not Found", i * 100, j * 100 + 100);
+            }
+        }
+        return temp;
     }
+
 
     private void loadRoot(File file){
         File[] filesInFolder = file.listFiles();
@@ -71,15 +81,18 @@ public class ImageProvider {
             }
         }
     }
-    
-    
+
+    public boolean hasImage(String name){
+        return textures.containsKey(name);
+    }
+
     /**
      * Returns the previously loaded image from the given path (relative path starts in root folder)
      * @param name the path to the Image
      * @return the image
      */
     public BufferedImage getImage(String name){
-        if(!textures.containsKey(name)){
+        if(!hasImage(name)){
             return fallBack;
         }
         return textures.get(name);

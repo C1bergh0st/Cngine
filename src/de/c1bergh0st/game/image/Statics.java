@@ -32,20 +32,7 @@ public class Statics {
      * @return the generated Image
      */
     public static BufferedImage getErrorImage(int width, int height){
-        BufferedImage temp = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        Graphics g = temp.getGraphics();
-        g.setColor(Color.PINK);
-        g.fillRect(0, 0, width, height);
-        g.setColor(Color.WHITE);
-        g.drawRect(0, 0, width, height);
-        g.setColor(Color.BLACK);
-        for(int i = 0; i < (width / 100); i++){
-            for(int j = 0; j < (height / 100) + 1; j++){
-                g.drawString("ERROR", i * 100, j * 100 + 50);
-                g.drawString("Image not Found", i * 100, j * 100 + 100);
-            }
-        }
-        return temp;
+        return getImageProvider().getErrorImage(width, height);
     }
 
 }

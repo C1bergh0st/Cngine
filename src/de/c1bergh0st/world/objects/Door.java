@@ -18,6 +18,7 @@ import de.c1bergh0st.world.interfaces.Drawable;
 import de.c1bergh0st.world.interfaces.Interactable;
 import de.c1bergh0st.world.interfaces.Layer;
 import de.c1bergh0st.world.interfaces.Solid;
+import de.c1bergh0st.world.objects.human.Human;
 
 public class Door implements Drawable, Interactable, Solid, HitBox{
     private static final double WIDTH = 0.1;
@@ -134,7 +135,7 @@ public class Door implements Drawable, Interactable, Solid, HitBox{
     }
 
     @Override
-    public void interact() {
+    public void interact(Human human) {
         if (enabled) {
             isOpen = !isOpen;
         }

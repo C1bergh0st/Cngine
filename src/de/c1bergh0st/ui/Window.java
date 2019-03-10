@@ -32,7 +32,7 @@ public class Window extends JFrame{
 		pack();
 		setResizable(false);
 		setVisible(true);
-        setLocation(1920, 0);
+        //setLocation(1920, 0);
 		add(new Menu(this));
 		pack();
 	}

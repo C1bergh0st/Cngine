@@ -2,10 +2,7 @@ package de.c1bergh0st.input;
 
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
@@ -25,24 +22,45 @@ public class InputHandler {
 	
 	private Map<String, Integer> map = new HashMap<String, Integer>();
 	//TODO find a better way to organize these lists
-	private String[] inputKeys = {"up","down","left","right","shift","use", "reload", "space"};
-    private char[] inputKeyCodes = {'W','S','A','D', KeyEvent.VK_SHIFT ,'E', 'R', KeyEvent.VK_SPACE};
+	private List<String> inputKeys = new ArrayList<String>();
+    private List<Character> inputKeyCodes = new ArrayList<Character>();
 	private boolean[] keyStatus;
 	private GamePanel source;
 	private InputMap inputMap;
 	private ActionMap actionMap;
 	
 	public InputHandler(){
-	    if(inputKeys.length != inputKeyCodes.length){
+		load();
+	    if(inputKeys.size() != inputKeyCodes.size()){
 	        throw new IllegalStateException("There needs to be a key assigned to every input keyword");
 	    }
-		keyStatus = new boolean[inputKeys.length];
-		for(int i = 0; i < inputKeys.length; i++){
-			map.put(inputKeys[i], i);
+		keyStatus = new boolean[inputKeys.size()];
+		for(int i = 0; i < inputKeys.size(); i++){
+			map.put(inputKeys.get(i), i);
 		}
 		
 		
 		Debug.send("INPUTHANDLER initialized");
+	}
+
+	private void load(){
+		add("up",'W');
+		add("down",'S');
+		add("left",'A');
+		add("right",'D');
+		add("shift",(char)KeyEvent.VK_SHIFT);
+		add("use",'E');
+		add("reload",'R');
+		add("space",(char)KeyEvent.VK_SPACE);
+		//Adds numbers one to ten
+		for(int i = 0; i < 10; i++){
+			add(Integer.toString(i),(char)(48+i));
+		}
+	}
+
+	private void add(String key, char keyCode){
+		inputKeys.add(key);
+		inputKeyCodes.add(keyCode);
 	}
 	
 	public boolean isClicked(int mousebutton){
@@ -98,8 +116,8 @@ public class InputHandler {
     }
     
     private void registerAll() {
-        for(int i = 0; i < inputKeys.length; i++){
-            register((int) inputKeyCodes[i], inputKeys[i]);
+        for(int i = 0; i < inputKeys.size(); i++){
+            register((int) inputKeyCodes.get(i), inputKeys.get(i));
         }
     }
 

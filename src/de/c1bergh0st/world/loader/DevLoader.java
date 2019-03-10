@@ -13,7 +13,8 @@ public class DevLoader implements WorldLoader{
     
     public void load(World world){
         Player p = new Player(4,3, world);
-        p.setWeapon(new DevGun(p));
+        p.setWeapon(new DevGun(p, 150, 12,34, 0.3, 12), 1);
+        p.setWeapon(new DevGun(p,800, 30, 23,0.5, 25), 2);
         world.add(p);
         world.setCenter(p);
         world.getController().setTarget(p);

@@ -1,13 +1,16 @@
-package de.c1bergh0st.world;
+package de.c1bergh0st.world.objects.human;
 
 import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
 
+import de.c1bergh0st.debug.Debug;
 import de.c1bergh0st.debug.Util;
 import de.c1bergh0st.gamecode.MainGame;
 import de.c1bergh0st.geometry.Vector;
 import de.c1bergh0st.input.InputHandler;
+import de.c1bergh0st.world.Direction;
+import de.c1bergh0st.world.World;
 import de.c1bergh0st.world.interfaces.Tickable;
 import de.c1bergh0st.world.objects.DevPoint;
 import de.c1bergh0st.world.objects.human.Action;
@@ -75,6 +78,11 @@ public class Controller implements Tickable{
             if(input.isDown("space")){
                 world.setPaused(true);;
             }
+            for(int i = 0; i < 10; i++){
+                if(input.isDown(""+i)){
+                    target.equipWeaponSlot(i);
+                }
+            }
         }
     }
 
@@ -96,6 +104,9 @@ public class Controller implements Tickable{
     public void secondTick() {
     }
 
+    public Human getTarget(){
+        return target;
+    }
     
     
 }
