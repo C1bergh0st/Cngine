@@ -24,7 +24,7 @@ public class NodeProvider {
     public void reload(){
         nodeList.clear();
         List<Rectangle2D.Double> solidList = world.getSolidBounds();
-        List<Node> detailList = new LinkedList<>();
+        //List<Node> detailList = new LinkedList<>();
         boolean[][] walls = world.getWalls();
         for(int x = 0; x < walls.length; x++){
             for(int y = 0; y < walls[x].length; y++){
@@ -33,6 +33,7 @@ public class NodeProvider {
                 }
             }
         }
+        /*
         for(Node node : nodeList){
             for(Rectangle2D.Double rect : solidList){
                 if(node.intersects(rect)){
@@ -43,7 +44,7 @@ public class NodeProvider {
         nodeList.removeAll(detailList);
         for(Node n : detailList){
             nodeList.add(new Node(n.getPos().add(new Vector(0.2,0.2)), new Vector(0.6, 0.6),true));
-        }
+        }*/
     }
 
     public List<Node> getNodes(){
