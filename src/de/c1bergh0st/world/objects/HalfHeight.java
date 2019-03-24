@@ -1,12 +1,9 @@
 package de.c1bergh0st.world.objects;
 
 import de.c1bergh0st.geometry.Vector;
-import de.c1bergh0st.world.interfaces.Drawable;
 import de.c1bergh0st.world.interfaces.Layer;
 import de.c1bergh0st.world.interfaces.Solid;
-import de.c1bergh0st.world.interfaces.Tickable;
 
-import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 public abstract class HalfHeight extends Active implements Solid {
