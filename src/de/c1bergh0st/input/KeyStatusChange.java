@@ -1,5 +1,7 @@
 package de.c1bergh0st.input;
 
+import de.c1bergh0st.debug.Debug;
+
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;

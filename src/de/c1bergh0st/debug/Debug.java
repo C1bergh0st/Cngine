@@ -13,6 +13,13 @@ public class Debug {
 			System.out.println(str);
 		}
 	}
+
+
+	public static void send(Object o){
+		if(debugactive){
+			System.out.println(o.toString());
+		}
+	}
 	
 	public static void sendErr(String str){
 			System.out.println("!!! ERROR !!!  =>"+str);

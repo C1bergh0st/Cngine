@@ -142,8 +142,13 @@ public class InputHandler {
 	
 	private List<KeyStroke> getKeyStrokes(int key, boolean pressed){
 	    List<KeyStroke> result = new LinkedList<>();
-	    if(key == KeyEvent.VK_SHIFT){
-	        result.add(KeyStroke.getKeyStroke(KeyEvent.VK_SHIFT, InputEvent.SHIFT_DOWN_MASK, !pressed));
+	    //Extra stuff for the shift key
+	    if(key == KeyEvent.VK_SHIFT) {
+	    	if (!pressed){
+				result.add(KeyStroke.getKeyStroke(KeyEvent.VK_SHIFT, 0, true));
+			} else {
+				result.add(KeyStroke.getKeyStroke(KeyEvent.VK_SHIFT, InputEvent.SHIFT_DOWN_MASK, false));
+			}
 	    } else {
 	        result.add(KeyStroke.getKeyStroke(key, 0, !pressed));
             result.add(KeyStroke.getKeyStroke(key, InputEvent.SHIFT_DOWN_MASK, !pressed));

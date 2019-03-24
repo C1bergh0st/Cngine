@@ -3,6 +3,7 @@ package de.c1bergh0st.world.objects.human;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 
+import de.c1bergh0st.debug.Debug;
 import de.c1bergh0st.debug.Util;
 import de.c1bergh0st.gamecode.MainGame;
 import de.c1bergh0st.geometry.Vector;
