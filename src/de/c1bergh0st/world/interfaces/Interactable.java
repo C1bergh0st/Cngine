@@ -4,20 +4,21 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
-import de.c1bergh0st.debug.Util;
+import de.c1bergh0st.debug.DrawUtil;
 import de.c1bergh0st.world.objects.human.Human;
 
 public interface Interactable {
     
-    public void interact(Human human);
+    void interact(Human human);
     
-    public void setEnabled(boolean enabled);
+    void setEnabled(boolean enabled);
     
-    public boolean isEnabled();
+    boolean isEnabled();
     
     default void drawInteractionField(Graphics2D g){
-        Util.drawRect(getInteractionField(), g, new Color(0,0,255,150));
+        g.setColor(new Color(0,0,255,150));
+        DrawUtil.drawRect(getInteractionField(), g);
     }
     
-    public Rectangle2D.Double getInteractionField();
+    Rectangle2D.Double getInteractionField();
 }

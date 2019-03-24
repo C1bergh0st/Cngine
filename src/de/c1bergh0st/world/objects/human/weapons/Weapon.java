@@ -6,8 +6,6 @@ import de.c1bergh0st.world.objects.human.Human;
 import de.c1bergh0st.world.objects.human.inventory.Equipable;
 import de.c1bergh0st.world.objects.human.inventory.ItemType;
 
-import java.awt.image.BufferedImage;
-
 public abstract class Weapon implements Tickable, Drawable, Equipable {
     protected Human carrier;
     

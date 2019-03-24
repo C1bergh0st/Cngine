@@ -8,7 +8,7 @@ import java.util.List;
 
 import de.c1bergh0st.damage.Team;
 import de.c1bergh0st.debug.Debug;
-import de.c1bergh0st.debug.Util;
+import de.c1bergh0st.debug.DrawUtil;
 import de.c1bergh0st.gamecode.MainGame;
 import de.c1bergh0st.geometry.Edge;
 import de.c1bergh0st.geometry.Vector;
@@ -38,7 +38,7 @@ public class DevBullet extends Bullet{
         Vector start = pos.add(new Vector(size / 2, size / 2));
         Vector end = start.add(dir.multiply(-2d / MainGame.TICKSPEED));
         Edge edge = new Edge(start, end, size);
-        edge.transform(Util.getScaleTransForm());
+        edge.transform(DrawUtil.getTransform());
         g.setColor(Color.YELLOW);
         g.fill(edge);
     }

@@ -15,10 +15,11 @@ public class CLI {
     public void testForInput(World world){
         try {
             if(System.in.available() > 0){
-                String line = "";
+                StringBuilder lineBuilder = new StringBuilder();
                 while (System.in.available() > 0){
-                    line += (char) System.in.read();
+                    lineBuilder.append((char) System.in.read());
                 }
+                String line = lineBuilder.toString();
                 line = line.replaceAll(System.lineSeparator(), "");
                 line = line.replaceAll("\n", "");
                 line = line.replaceAll("\r", "");

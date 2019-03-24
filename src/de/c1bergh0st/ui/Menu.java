@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -27,7 +26,7 @@ public class Menu extends JPanel {
 	 */
 	public Menu(Window parent) {
 		this.parent = parent;
-		ImageIcon image = null;
+		ImageIcon image;
 		try {
 			image = new ImageIcon(ImageIO.read(Menu.class.getResourceAsStream("/res/MenuBackdrop.png")));
 		} catch (IOException e) {
@@ -78,10 +77,10 @@ public class Menu extends JPanel {
 		button4.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				/**
+				/*
 				 * DONT EVEN ASK ME ABOUT THIS SYNTAX
 				 */
-				int n = JOptionPane.showConfirmDialog(parent, "Do you want to quit the game?", "", JOptionPane.YES_NO_OPTION, JOptionPane.YES_NO_OPTION, (Icon)new EmptyIcon());
+				int n = JOptionPane.showConfirmDialog(parent, "Do you want to quit the game?", "", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, new EmptyIcon());
 				if(n == 0){
 					System.exit(1);
 				}

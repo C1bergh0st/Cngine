@@ -6,7 +6,6 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.awt.geom.Rectangle2D.Double;
 import java.awt.image.BufferedImage;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -69,7 +68,7 @@ public class Util {
 
 
 	@Deprecated
-	/**
+	/*
 	 * @Deprecated use {@link DrawUtil#fillRect(Double, Graphics2D)}
 	 */
     public static void fillRect(Rectangle2D.Double rect, Graphics2D g, Color color) {

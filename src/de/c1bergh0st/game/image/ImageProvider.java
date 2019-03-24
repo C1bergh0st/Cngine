@@ -19,12 +19,13 @@ public class ImageProvider {
     private BufferedImage fallBack;
     
     //package private !
+    @SuppressWarnings("SameParameterValue")
     ImageProvider(String rootpath) throws NoSuchFolderException{
         rootFolder = new File(rootpath);
         if(!rootFolder.exists() || !rootFolder.isDirectory()){
             throw new NoSuchFolderException("The folder" + rootpath + " does not exist");
         }
-        textures = new HashMap<String, BufferedImage>();
+        textures = new HashMap<>();
         
         loadRoot(rootFolder);
         
@@ -57,6 +58,7 @@ public class ImageProvider {
 
     private void loadRoot(File file){
         File[] filesInFolder = file.listFiles();
+        assert filesInFolder != null;
         for(File recursive : filesInFolder){
             load(recursive, "");
         }
@@ -68,6 +70,7 @@ public class ImageProvider {
         //      but in this case the Program might as well crash!
         if(file.isDirectory()){
             File[] filesInFolder = file.listFiles();
+            assert filesInFolder != null;
             for(File recursive : filesInFolder){
                 load(recursive, prefix + file.getName() + "/");
             }

@@ -3,7 +3,6 @@ package de.c1bergh0st.world.objects.human.inventory;
 import de.c1bergh0st.debug.Debug;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class SlotInventory<T extends Equipable> implements Inventory<T>{
@@ -15,7 +14,7 @@ public class SlotInventory<T extends Equipable> implements Inventory<T>{
             throw new IllegalArgumentException("Size cannot be smaller than zero");
         }
         this.size = size;
-        slots = new ArrayList<T>();
+        slots = new ArrayList<>();
         for(int i = 0; i < size; i++){
             slots.add(i, null);
         }

@@ -1,7 +1,5 @@
 package de.c1bergh0st.world.objects.human.inventory;
 
-import de.c1bergh0st.world.objects.human.weapons.Weapon;
-
 public interface Inventory<T extends Equipable> {
 
     boolean isEmpty(int slot);

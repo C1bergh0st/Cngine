@@ -2,9 +2,7 @@ package de.c1bergh0st.world.objects.human;
 
 import java.awt.Point;
 import java.awt.geom.Point2D;
-import java.awt.geom.Point2D.Double;
 
-import de.c1bergh0st.debug.Debug;
 import de.c1bergh0st.debug.Util;
 import de.c1bergh0st.gamecode.MainGame;
 import de.c1bergh0st.geometry.Vector;
@@ -76,7 +74,7 @@ public class Controller implements Tickable{
                 target.performAction(Action.SHOOT);
             }
             if(input.isDown("space")){
-                world.setPaused(true);;
+                world.setPaused(true);
             }
             for(int i = 0; i < 10; i++){
                 if(input.isDown(""+i)){

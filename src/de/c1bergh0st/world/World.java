@@ -9,7 +9,6 @@ import java.util.List;
 
 import de.c1bergh0st.damage.HitBox;
 import de.c1bergh0st.damage.Team;
-import de.c1bergh0st.debug.DrawUtil;
 import de.c1bergh0st.debug.Util;
 import de.c1bergh0st.gamecode.MainGame;
 import de.c1bergh0st.geometry.Vector;
@@ -49,16 +48,16 @@ public class World {
         this.game = game;
         paused = false;
         //variable initialization
-        tickables = new LinkedList<Tickable>();
-        drawLayers = new HashMap<Layer, List<Drawable>>();
+        tickables = new LinkedList<>();
+        drawLayers = new HashMap<>();
         for(Layer l : Layer.values()){
-            drawLayers.put(l, new LinkedList<Drawable>());
+            drawLayers.put(l, new LinkedList<>());
         }
-        removalList = new LinkedList<Object>();
-        collisionables = new LinkedList<Collisions>();
-        hitboxes = new LinkedList<HitBox>();
-        interactables = new LinkedList<Interactable>();
-        solids = new LinkedList<Solid>();
+        removalList = new LinkedList<>();
+        collisionables = new LinkedList<>();
+        hitboxes = new LinkedList<>();
+        interactables = new LinkedList<>();
+        solids = new LinkedList<>();
         controller = new Controller(this);
         walls = new Wall[MAX][MAX];
         nodeProvider = new NodeProvider(this);
@@ -120,9 +119,9 @@ public class World {
      * This can happen when a Drawable changes Layers
      */
     private void orderRenderLists() {
-        List<Drawable> correction = new LinkedList<Drawable>();
+        List<Drawable> correction = new LinkedList<>();
         for(Layer l : Layer.values()){
-            for(Drawable d : (LinkedList<Drawable>)drawLayers.get(l)){
+            for(Drawable d : drawLayers.get(l)){
                 if(d.getLayer() != l){
                     correction.add(d);
                 }
@@ -154,7 +153,7 @@ public class World {
         gg.translate(Util.toPix(-offset.getX()), Util.toPix(-offset.getY()));
         WorldUtil.drawDevSpquares(gg);
         for(Layer l : Layer.values()){
-            for(Drawable d : (LinkedList<Drawable>)drawLayers.get(l)){
+            for(Drawable d : drawLayers.get(l)){
                 d.draw(gg);
             }
             if(l == Layer.FLOOR && devDraw){
@@ -192,10 +191,11 @@ public class World {
     }
     
     public List<Rectangle2D.Double> getSolidBounds(){
-        List<Rectangle2D.Double> result = new LinkedList<Rectangle2D.Double>();
+        List<Rectangle2D.Double> result = new LinkedList<>();
         for(Solid s : solids){
             result.add(s.getBounds());
         }
+        //noinspection ForLoopReplaceableByForEach
         for(int x = 0; x < walls.length; x++){
             for(int y = 0; y < walls[x].length; y++){
                 if(walls[x][y] != null){
@@ -281,22 +281,22 @@ public class World {
     private void cleanLists(){
         for(Object o : removalList){
             if(o instanceof Tickable){
-                tickables.remove((Tickable)o);
+                tickables.remove(o);
             }
             if(o instanceof Drawable){
                 removeDrawable((Drawable)o);
             }
             if(o instanceof Collisions){
-                collisionables.remove((Collisions)o);
+                collisionables.remove(o);
             }
             if(o instanceof HitBox){
-                hitboxes.remove((HitBox)o);
+                hitboxes.remove(o);
             }
             if(o instanceof Interactable){
-                interactables.remove((Interactable)o);
+                interactables.remove(o);
             }
             if(o instanceof Solid){
-                solids.remove((Solid) o);
+                solids.remove(o);
             }
             if(o instanceof Wall){
                 Wall w = (Wall) o;

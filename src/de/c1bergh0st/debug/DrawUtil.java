@@ -41,7 +41,7 @@ public class DrawUtil {
 
     //DRAWING FUNCTIONS
 
-    public static void drawImage(BufferedImage img, Vector pos, Vector dim, Graphics2D g){
+    public static void drawImage(BufferedImage img, Point2D.Double pos, Point2D.Double dim, Graphics2D g){
         g.drawImage(img, Util.toPix(pos.x), Util.toPix(pos.y), Util.toPix(dim.x), Util.toPix(dim.y), null);
     }
 

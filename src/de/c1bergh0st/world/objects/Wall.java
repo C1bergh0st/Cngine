@@ -6,8 +6,9 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
 import java.awt.image.BufferedImage;
 
-import de.c1bergh0st.debug.Util;
+import de.c1bergh0st.debug.DrawUtil;
 import de.c1bergh0st.game.image.Statics;
+import de.c1bergh0st.geometry.Vector;
 import de.c1bergh0st.world.interfaces.Drawable;
 import de.c1bergh0st.world.interfaces.Layer;
 import de.c1bergh0st.world.interfaces.Solid;
@@ -37,7 +38,7 @@ public class Wall implements Drawable, Solid{
 
     @Override
     public void draw(Graphics2D g) {
-        Util.drawImage(img, position.getX(), position.getY(), 1, 1, g);
+        DrawUtil.drawImage(img, position, new Vector(1,1), g);
     }
 
     @Override

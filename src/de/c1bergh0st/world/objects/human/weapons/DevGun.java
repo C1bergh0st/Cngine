@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 
 import de.c1bergh0st.debug.Debug;
+import de.c1bergh0st.debug.DrawUtil;
 import de.c1bergh0st.debug.Util;
 import de.c1bergh0st.geometry.Edge;
 import de.c1bergh0st.geometry.Vector;
@@ -73,12 +74,12 @@ public class DevGun extends Weapon{
         if(reloading){
             int max = 20;
             char loading = '|';
-            String str = "";
+            StringBuilder str = new StringBuilder();
             int showing = (int)(getReloadProgress() * max);
             for(int i = 0; i <= showing; i++){
-                str = str + loading;
+                str.append(loading);
             }
-            g.drawString(str, Util.toPix(p.x), Util.toPix(p.y + 0.15));
+            g.drawString(str.toString(), Util.toPix(p.x), Util.toPix(p.y + 0.15));
         }
         
     }
@@ -92,7 +93,7 @@ public class DevGun extends Weapon{
         Vector end = start.add(carrier.getDir().multiply(length));
         Edge shape = new Edge(start, end, width);
         g.setColor(Color.BLACK);
-        shape.transform(Util.getScaleTransForm());
+        shape.transform(DrawUtil.getTransform());
         g.fill(shape);
         
     }

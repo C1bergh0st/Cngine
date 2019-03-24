@@ -1,7 +1,5 @@
 package de.c1bergh0st.game.image;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 public class Statics {
@@ -32,7 +30,7 @@ public class Statics {
      * @return the generated Image
      */
     public static BufferedImage getErrorImage(int width, int height){
-        return getImageProvider().getErrorImage(width, height);
+        return ImageProvider.getErrorImage(width, height);
     }
 
 }

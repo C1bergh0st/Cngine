@@ -1,7 +1,5 @@
 package de.c1bergh0st.world.terminal;
 
-import javax.swing.JButton;
-
 import de.c1bergh0st.debug.Debug;
 import de.c1bergh0st.geometry.Vector;
 import de.c1bergh0st.world.World;
@@ -12,6 +10,7 @@ import de.c1bergh0st.world.objects.human.Human;
 import de.c1bergh0st.world.objects.human.npc.NodeProvider;
 import de.c1bergh0st.world.objects.human.weapons.DevGun;
 
+@SuppressWarnings("Duplicates")
 public enum Commands implements Command{
     QUIT("quit"){
 
@@ -63,11 +62,7 @@ public enum Commands implements Command{
         public void execute(World world, String line) {
             String onlyArgs = line.substring(line.indexOf(" ") + 1);
             int v = Integer.parseInt(onlyArgs);
-            if(v == 1){
-                World.devDraw = true;
-            } else {
-                World.devDraw = false;
-            }
+            World.devDraw = (v == 1);
         }
         
     }, SHOWFPS("showFPS " + NUMBER){
@@ -76,11 +71,7 @@ public enum Commands implements Command{
         public void execute(World world, String line) {
             String onlyArgs = line.substring(line.indexOf(" ") + 1);
             int v = Integer.parseInt(onlyArgs);
-            if(v == 1){
-                world.getGame().showFPS = true;
-            } else {
-                world.getGame().showFPS = false;
-            }
+            world.getGame().showFPS = (v == 1);
         }
         
     }, DUMMYSQR("dummysqr " + POSITION){
@@ -139,7 +130,7 @@ public enum Commands implements Command{
     
     private String regex;
     
-    private Commands(String regex){
+    Commands(String regex){
         if(regex == null){
             throw new NullPointerException();
         }

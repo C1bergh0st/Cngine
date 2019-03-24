@@ -18,9 +18,9 @@ public class AudioController {
 	 * creates a new AudioController
 	 */
 	public AudioController(){
-	    sounds = new LinkedList<Sound>();
-	    removeables = new LinkedList<Sound>();
-	    availableIds = new HashSet<Integer>();
+	    sounds = new LinkedList<>();
+	    removeables = new LinkedList<>();
+	    availableIds = new HashSet<>();
 	    populateIds();
 	}
 	
@@ -77,9 +77,9 @@ public class AudioController {
 	 */
 	public void update(){
 	    Sound s;
-		for(int i = 0; i < sounds.size();i++){
-		    s = sounds.get(i);
-			if(s.isFinished() && !removeables.contains(s)){
+		for (Sound sound : sounds) {
+			s = sound;
+			if (s.isFinished() && !removeables.contains(s)) {
 				removeables.add(s);
 			}
 		}
@@ -89,7 +89,7 @@ public class AudioController {
 			availableIds.add(temp.getId());
 			activeSounds--;
 		}
-        removeables = new LinkedList<Sound>();
+        removeables = new LinkedList<>();
 	}
 	
 	

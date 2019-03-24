@@ -10,7 +10,7 @@ public enum Direction {
     
     private Vector vector;
     
-    private Direction(Vector vec){
+    Direction(Vector vec){
         this.vector = vec;
     }
     

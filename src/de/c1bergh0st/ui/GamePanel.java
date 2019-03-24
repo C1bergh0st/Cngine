@@ -1,23 +1,14 @@
 package de.c1bergh0st.ui;
 
-import javax.swing.ActionMap;
-import javax.swing.InputMap;
-import javax.swing.JComponent;
 import javax.swing.JPanel;
-import javax.swing.KeyStroke;
 
 import de.c1bergh0st.debug.Debug;
 import de.c1bergh0st.gamecode.MainGame;
-import de.c1bergh0st.geometry.Vector;
-import de.c1bergh0st.input.InputHandler;
-import de.c1bergh0st.input.KeyStatusChange;
 
 import java.awt.Canvas;
 import java.awt.Cursor;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
@@ -36,11 +27,11 @@ public class GamePanel extends JPanel {
 	public GamePanel(Window parent) {
 		Debug.send("EDITORPANEL");
 		this.parent = parent;
-		mousebuttons = new HashMap<Integer, Boolean>();
+		mousebuttons = new HashMap<>();
 		setLayout(null);
-		
-		Canvas canvas = new MainGame(parent);
-		maingame = (MainGame) canvas;
+
+		maingame = new MainGame(parent);
+		Canvas canvas = maingame;
 		maingame.setPanel(this);
 		
 		setCursor(false);

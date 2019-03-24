@@ -69,7 +69,7 @@ public class Sound {
 	/**
 	 * Determines whether this Sound has finished playback.
 	 * !Will always return true if this Sound is set to loop!
-	 * @return
+	 * @return true if the sound has finished playback
 	 */
 	public boolean isFinished(){
 		return !clip.isRunning();

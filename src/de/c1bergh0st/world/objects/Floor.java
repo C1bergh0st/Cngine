@@ -3,7 +3,7 @@ package de.c1bergh0st.world.objects;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import de.c1bergh0st.debug.Util;
+import de.c1bergh0st.debug.DrawUtil;
 import de.c1bergh0st.game.image.Statics;
 import de.c1bergh0st.geometry.Vector;
 import de.c1bergh0st.world.interfaces.Drawable;
@@ -21,7 +21,7 @@ public class Floor implements Drawable{
     
     @Override
     public void draw(Graphics2D g) {
-        Util.drawImage(img, position.x, position.y, 1, 1, g);
+        DrawUtil.drawImage(img, position, new Vector(1,1), g);
     }
 
 

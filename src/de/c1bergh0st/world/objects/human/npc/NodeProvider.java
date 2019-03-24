@@ -2,11 +2,9 @@ package de.c1bergh0st.world.objects.human.npc;
 
 import de.c1bergh0st.geometry.Vector;
 import de.c1bergh0st.world.World;
-import de.c1bergh0st.world.interfaces.Solid;
 
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class NodeProvider {

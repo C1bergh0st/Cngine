@@ -3,10 +3,10 @@ package de.c1bergh0st.ui;
 import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import de.c1bergh0st.debug.Debug;
 
@@ -38,14 +38,14 @@ public class Window extends JFrame{
 	}
 	
 	public void showLayout(String type){
-		if(type == "Menu"){
+		if(Objects.equals(type, "Menu")){
 			getContentPane().removeAll();
 			add(new Menu(this));
 			revalidate();
 			repaint();
 			gpanel = null;
 		}
-		else if(type == "Game"){
+		else if(Objects.equals(type, "Game")){
 			getContentPane().removeAll();
 			gpanel = new GamePanel(this);
 			add(gpanel);

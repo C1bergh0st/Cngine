@@ -4,5 +4,5 @@ import java.awt.geom.Rectangle2D;
 
 public interface Solid {
     
-    public Rectangle2D.Double getBounds();
+    Rectangle2D.Double getBounds();
 }

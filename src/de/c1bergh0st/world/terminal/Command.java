@@ -2,7 +2,7 @@ package de.c1bergh0st.world.terminal;
 
 import de.c1bergh0st.world.World;
 
-public interface Command {
+interface Command {
     String SEPARATOR = ",";
     String SEP = SEPARATOR;
     String NUMBER = "-?\\d{1,4}";

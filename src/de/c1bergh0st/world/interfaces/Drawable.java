@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 
 public interface Drawable {
     
-    public void draw(Graphics2D g);
+    void draw(Graphics2D g);
     
-    public Layer getLayer();
+    Layer getLayer();
 }

@@ -4,7 +4,6 @@ import de.c1bergh0st.world.Direction;
 import de.c1bergh0st.world.World;
 import de.c1bergh0st.world.objects.Door;
 import de.c1bergh0st.world.objects.Floor;
-import de.c1bergh0st.world.objects.TextOverlay;
 import de.c1bergh0st.world.objects.Wall;
 import de.c1bergh0st.world.objects.human.Player;
 import de.c1bergh0st.world.objects.human.weapons.DevGun;
@@ -26,7 +25,7 @@ public class DevLoader implements WorldLoader{
                         {1, 0, 0, 0, 0, 0, 0, 0, 1},
                         {1, 0, 0, 0, 0, 0, 0, 0, 1},
                         {1, 0, 1, 0, 1, 0, 1, 0, 1}};
-        /**int[][] temp = {{1, 1, 0, 0, 0, 0, 0, 0, 0},
+        /*int[][] temp = {{1, 1, 0, 0, 0, 0, 0, 0, 0},
                         {0, 0, 0, 0, 0, 0, 0, 0, 0},
                         {0, 0, 0, 0, 0, 0, 0, 0, 0},
                         {0, 0, 0, 0, 0, 0, 0, 0, 0},

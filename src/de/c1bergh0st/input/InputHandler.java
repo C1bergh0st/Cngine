@@ -20,10 +20,10 @@ public class InputHandler {
     private boolean showPresses = false;
 	
 	
-	private Map<String, Integer> map = new HashMap<String, Integer>();
+	private Map<String, Integer> map = new HashMap<>();
 	//TODO find a better way to organize these lists
-	private List<String> inputKeys = new ArrayList<String>();
-    private List<Character> inputKeyCodes = new ArrayList<Character>();
+	private List<String> inputKeys = new ArrayList<>();
+    private List<Character> inputKeyCodes = new ArrayList<>();
 	private boolean[] keyStatus;
 	private GamePanel source;
 	private InputMap inputMap;
@@ -70,7 +70,7 @@ public class InputHandler {
 	/**
 	 * Returns whether a given Key is currently being pressed
 	 * @param key a String representing the pressed key
-	 * @return
+	 * @return true if the key is down
 	 */
 	public boolean isDown(String key){
 	    validate();
@@ -141,7 +141,7 @@ public class InputHandler {
     }
 	
 	private List<KeyStroke> getKeyStrokes(int key, boolean pressed){
-	    List<KeyStroke> result = new LinkedList<KeyStroke>();
+	    List<KeyStroke> result = new LinkedList<>();
 	    if(key == KeyEvent.VK_SHIFT){
 	        result.add(KeyStroke.getKeyStroke(KeyEvent.VK_SHIFT, InputEvent.SHIFT_DOWN_MASK, !pressed));
 	    } else {

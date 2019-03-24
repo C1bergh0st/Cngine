@@ -4,16 +4,15 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
-import java.util.LinkedList;
 import java.util.List;
 
 import de.c1bergh0st.damage.HitBox;
 import de.c1bergh0st.damage.Team;
+import de.c1bergh0st.debug.DrawUtil;
 import de.c1bergh0st.debug.Util;
 import de.c1bergh0st.geometry.Vector;
 import de.c1bergh0st.world.Direction;
 import de.c1bergh0st.world.World;
-import de.c1bergh0st.world.interfaces.Collisions;
 import de.c1bergh0st.world.interfaces.Drawable;
 import de.c1bergh0st.world.interfaces.Interactable;
 import de.c1bergh0st.world.interfaces.Layer;
@@ -75,6 +74,7 @@ public class Door implements Drawable, Interactable, Solid, HitBox{
         return generateRectangle(positions);
     }
     
+    @SuppressWarnings("Duplicates")
     private Rectangle2D.Double generateRectangle(List<Vector> positions) {
         Vector upL = positions.get(0);
         for(Vector v : positions){
@@ -153,7 +153,8 @@ public class Door implements Drawable, Interactable, Solid, HitBox{
 
     @Override
     public void draw(Graphics2D g) {
-        Util.fillRect(getBounds(), g, new Color(61,35,0));
+        g.setColor(new Color(61,35,0));
+        DrawUtil.fillRect(getBounds(), g);
         if(World.devDraw){
             g.setColor(new Color(0, 255, 0, 150));
             drawOpeningArc(g);

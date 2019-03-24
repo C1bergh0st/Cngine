@@ -23,11 +23,13 @@ public class Vector extends Point2D.Double{
     }
     
     public Vector turnLeft(){
+        //noinspection SuspiciousNameCombination
         return new Vector(-y, x);
     }
     
 
     public Vector turnRight(){
+        //noinspection SuspiciousNameCombination
         return new Vector(y, -x);
     }
     
@@ -55,7 +57,7 @@ public class Vector extends Point2D.Double{
      * @return the List
      */
     public List<Vector> getSqaure(double expansion){
-        List<Vector> result = new LinkedList<Vector>();
+        List<Vector> result = new LinkedList<>();
         result.add(new Vector(x - expansion, y - expansion));
         result.add(new Vector(x + expansion, y - expansion));
         result.add(new Vector(x - expansion, y + expansion));

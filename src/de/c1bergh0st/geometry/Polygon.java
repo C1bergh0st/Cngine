@@ -10,7 +10,7 @@ public class Polygon extends Path2D.Double{
     
     public Polygon(){
         super();
-        vertecies = new LinkedList<Vector>();
+        vertecies = new LinkedList<>();
     }
     
     public void add(Vector v){

@@ -10,7 +10,6 @@ import de.c1bergh0st.input.InputHandler;
 import de.c1bergh0st.world.Direction;
 import de.c1bergh0st.world.World;
 import de.c1bergh0st.world.interfaces.Interactable;
-import de.c1bergh0st.world.interfaces.Layer;
 
 public class Player extends Human{
     private static final int INTERACTIONDELAY = 300;

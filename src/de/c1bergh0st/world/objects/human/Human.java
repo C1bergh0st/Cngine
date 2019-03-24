@@ -22,7 +22,7 @@ public abstract class Human extends PhysicalActive implements Collisions, HitBox
     protected Vector direction;
     protected Kone kone;
     protected Weapon currWeapon;
-    protected Inventory<Weapon> weapons = new SlotInventory<Weapon>(10);
+    protected Inventory<Weapon> weapons = new SlotInventory<>(10);
     
     public Human(Vector pos, World world){
         lastPos = pos;
