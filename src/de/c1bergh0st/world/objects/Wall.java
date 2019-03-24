@@ -6,6 +6,8 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
 import java.awt.image.BufferedImage;
 
+import de.c1bergh0st.damage.HitBox;
+import de.c1bergh0st.damage.Team;
 import de.c1bergh0st.debug.DrawUtil;
 import de.c1bergh0st.game.image.Statics;
 import de.c1bergh0st.geometry.Vector;
@@ -13,7 +15,7 @@ import de.c1bergh0st.world.interfaces.Drawable;
 import de.c1bergh0st.world.interfaces.Layer;
 import de.c1bergh0st.world.interfaces.Solid;
 
-public class Wall implements Drawable, Solid{
+public class Wall implements Drawable, Solid, HitBox {
     private Point2D.Double position;
     private BufferedImage img;
     
@@ -45,5 +47,34 @@ public class Wall implements Drawable, Solid{
     public Layer getLayer() {
         return Layer.MIDDLE;
     }
-    
+
+    @Override
+    public Double getHitBox() {
+        return getBounds();
+    }
+
+    @Override
+    public void hit(Team team, int damage) {
+        //Walls dont take damage and dont apply damage
+    }
+
+    @Override
+    public int getContactDamage() {
+        return 0;
+    }
+
+    @Override
+    public Team getTeam() {
+        return Team.ENVIRONMENT;
+    }
+
+    @Override
+    public boolean isDead() {
+        return false;
+    }
+
+    @Override
+    public boolean shouldRemove() {
+        return false;
+    }
 }

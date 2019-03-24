@@ -12,7 +12,7 @@ import de.c1bergh0st.world.interfaces.Drawable;
 import de.c1bergh0st.world.interfaces.Tickable;
 
 @SuppressWarnings("WeakerAccess")
-public abstract class Bullet implements HitBox, Drawable, Tickable, Collisions{
+public abstract class Bullet implements HitBox, Drawable, Tickable{
     private static final double SAFETY = 0.05;
     protected Vector pos;
     protected double size;

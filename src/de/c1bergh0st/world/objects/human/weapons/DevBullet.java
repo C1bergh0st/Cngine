@@ -58,15 +58,6 @@ public class DevBullet extends Bullet{
         //EMPTY
     }
 
-    @Override
-    public void collision(List<Double> list) {
-        Rectangle2D.Double bounds = new Rectangle2D.Double(pos.x, pos.y, size, size);
-        for(Rectangle2D.Double rect : list){
-            if(rect.intersects(bounds)){
-                health = 0;
-            }
-        }
-    }
 
 
     @Override

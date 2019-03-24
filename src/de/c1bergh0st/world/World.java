@@ -88,16 +88,12 @@ public class World {
                     }
                 }
             }
-            for(Rectangle2D.Double solid : solidList){
-                if(a.getHitBox().intersects(solid)){
-                    a.hit(Team.NONE, 0);
-                }
-            }
+
             if(a.shouldRemove()){
                 remove(a);
             }
         }
-        Util.offset = new Point2D.Double(-2, -1);
+        //Util.offset = new Point2D.Double(-2, -1);
         cleanLists();
     }
     
@@ -142,7 +138,11 @@ public class World {
     }
 
     public Point2D.Double getOffset(){
-        return center.getPosition().add(new Vector(-10,-5));
+        double halfwidth = Util.toUnits(1920) / 2d;
+        double halfheight = Util.toUnits(1080) / 2d;
+        Vector offsetFromCorner = new Vector(halfwidth, halfheight);
+        Vector offset = center.getPosition().substract(offsetFromCorner);
+        return offset;
     }
     
     public void draw(Graphics g){

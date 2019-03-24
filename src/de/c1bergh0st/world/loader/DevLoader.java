@@ -4,6 +4,7 @@ import de.c1bergh0st.world.Direction;
 import de.c1bergh0st.world.World;
 import de.c1bergh0st.world.objects.Door;
 import de.c1bergh0st.world.objects.Floor;
+import de.c1bergh0st.world.objects.Table;
 import de.c1bergh0st.world.objects.Wall;
 import de.c1bergh0st.world.objects.human.Player;
 import de.c1bergh0st.world.objects.human.weapons.DevGun;
@@ -49,7 +50,9 @@ public class DevLoader implements WorldLoader{
         world.add(new Door(1, 4, Direction.RIGHT, 100));
         world.add(new Door(1, 6, Direction.DOWN, 100));
         world.add(new Door(1, 8, Direction.LEFT, 100));
-        
+        for (int i = 0; i < 4; i++){
+            world.add(new Table(10,i));
+        }
         /*
         world.add(new TextOverlay(2, 2, "UP"));
         world.add(new TextOverlay(2, 4, "RIGHT"));
