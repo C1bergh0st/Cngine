@@ -19,12 +19,15 @@ import de.c1bergh0st.world.interfaces.Layer;
 import de.c1bergh0st.world.interfaces.Solid;
 import de.c1bergh0st.world.interfaces.Tickable;
 import de.c1bergh0st.world.objects.Active;
+import de.c1bergh0st.world.objects.Door;
 import de.c1bergh0st.world.objects.Wall;
 import de.c1bergh0st.world.objects.human.Controller;
+import de.c1bergh0st.world.objects.human.npc.Edge;
 import de.c1bergh0st.world.objects.human.npc.Node;
 import de.c1bergh0st.world.objects.human.npc.NodeProvider;
 import de.c1bergh0st.world.terminal.CLI;
 
+@SuppressWarnings("Duplicates")
 public class World {
     public static final int MAX = 25;
     public static final double SCALE = 1;
@@ -160,6 +163,9 @@ public class World {
                 for(Node n: nodeProvider.getNodes()){
                     n.draw(gg);
                 }
+                for(Edge e: nodeProvider.getEdges()){
+                    e.draw(gg);
+                }
             }
         }
         if(devDraw){
@@ -188,6 +194,24 @@ public class World {
             throw new NullPointerException("You cannot Center on Nothing!");
         }
         center = a;
+    }
+
+    public List<Rectangle2D.Double> getWallBounds(){
+        List<Rectangle2D.Double> result = new LinkedList<>();
+        for(int x = 0; x < walls.length; x++){
+            for(int y = 0; y < walls[x].length; y++){
+                if(walls[x][y] != null){
+                    result.add(walls[x][y].getBounds());
+                }
+            }
+        }
+        for(Solid s : solids){
+            if(s instanceof Door){
+                continue;
+            }
+            result.add(s.getBounds());
+        }
+        return result;
     }
     
     public List<Rectangle2D.Double> getSolidBounds(){

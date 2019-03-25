@@ -41,6 +41,11 @@ public class DrawUtil {
 
     //DRAWING FUNCTIONS
 
+    public static void drawLine(Point2D.Double start, Point2D.Double end, Graphics2D g){
+        g.drawLine(Util.toPix(start.x), Util.toPix(start.y), Util.toPix(end.x), Util.toPix(end.y));
+    }
+
+
     public static void drawImage(BufferedImage img, Point2D.Double pos, Point2D.Double dim, Graphics2D g){
         g.drawImage(img, Util.toPix(pos.x), Util.toPix(pos.y), Util.toPix(dim.x), Util.toPix(dim.y), null);
     }

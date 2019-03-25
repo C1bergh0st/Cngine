@@ -4,11 +4,18 @@ import de.c1bergh0st.debug.Debug;
 import de.c1bergh0st.geometry.Vector;
 import de.c1bergh0st.world.World;
 import de.c1bergh0st.world.loader.DevLoader;
+import de.c1bergh0st.world.objects.DevPath;
+import de.c1bergh0st.world.objects.DevPoint;
+import de.c1bergh0st.world.objects.Table;
 import de.c1bergh0st.world.objects.Wall;
 import de.c1bergh0st.world.objects.human.DevDummy;
 import de.c1bergh0st.world.objects.human.Human;
+import de.c1bergh0st.world.objects.human.npc.Node;
 import de.c1bergh0st.world.objects.human.npc.NodeProvider;
+import de.c1bergh0st.world.objects.human.npc.PathFinder;
 import de.c1bergh0st.world.objects.human.weapons.DevGun;
+
+import java.util.List;
 
 @SuppressWarnings("Duplicates")
 public enum Commands implements Command{
@@ -123,6 +130,26 @@ public enum Commands implements Command{
         public void execute(World world, String line) {
             NodeProvider nodeProvider = world.getNodeProvider();
             nodeProvider.reload();
+        }
+    }, NEAREST("getNearest"){
+        @Override
+        public void execute(World world, String line) {
+            Vector v = world.getController().getTarget().getCenter();
+            Node n = world.getNodeProvider().getNearest(v);
+            n.highlight = !n.highlight;
+        }
+    }, PATHTEST("pathtest"){
+        @Override
+        public void execute(World world, String line) {
+            Vector start = world.getController().getTarget().getCenter();
+            List<Vector> path = new PathFinder(world.getNodeProvider()).getPath(start, new Vector(7,7));
+            if(path != null){
+                world.add(new DevPath(path));
+                world.add(new DevPoint(path.get(0), 0.2));
+                world.add(new DevPoint(path.get(path.size() - 1), 0.2));
+            } else{
+                Debug.send("no path found");
+            }
         }
     };
 
