@@ -64,7 +64,7 @@ public class GamePanel extends JPanel {
 		});
 		
         
-		canvas.setBounds(0, 0, 1920, 1080);
+		canvas.setBounds(0, 0, parent.getSize().width, parent.getSize().height);
 		add(canvas);
 	}
 	

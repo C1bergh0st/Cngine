@@ -35,7 +35,9 @@ public abstract class Human extends PhysicalActive implements Collisions, HitBox
     }
     
     public abstract void move(Direction dir, double sqrsPerSecond);
-    
+
+    public abstract void moveRelative(double sqrsPersecond);
+
     public abstract void performAction(Action action);
     
     

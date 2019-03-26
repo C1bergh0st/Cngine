@@ -22,6 +22,9 @@ import de.c1bergh0st.world.objects.Active;
 import de.c1bergh0st.world.objects.Door;
 import de.c1bergh0st.world.objects.Wall;
 import de.c1bergh0st.world.objects.human.Controller;
+import de.c1bergh0st.world.objects.human.Human;
+import de.c1bergh0st.world.objects.human.Player;
+import de.c1bergh0st.world.objects.human.npc.AIMaster;
 import de.c1bergh0st.world.objects.human.npc.Edge;
 import de.c1bergh0st.world.objects.human.npc.Node;
 import de.c1bergh0st.world.objects.human.npc.NodeProvider;
@@ -44,6 +47,7 @@ public class World {
     private Controller controller;
     private CLI commandLine;
     private NodeProvider nodeProvider;
+    private AIMaster aiMaster;
     public static boolean devDraw = true;
     private boolean paused;
     
@@ -64,7 +68,8 @@ public class World {
         controller = new Controller(this);
         walls = new Wall[MAX][MAX];
         nodeProvider = new NodeProvider(this);
-        
+        aiMaster = new AIMaster();
+
         commandLine = new CLI();
     }
     
@@ -141,10 +146,17 @@ public class World {
     }
 
     public Point2D.Double getOffset(){
-        double halfwidth = Util.toUnits(1920) / 2d;
-        double halfheight = Util.toUnits(1080) / 2d;
+        Dimension screendim = game.parent.getSize();
+        double halfwidth = Util.toUnits(screendim.width) / 2d;
+        double halfheight = Util.toUnits(screendim.height) / 2d;
         Vector offsetFromCorner = new Vector(halfwidth, halfheight);
-        Vector offset = center.getPosition().substract(offsetFromCorner);
+        Vector offset;
+        if(center instanceof Human){
+            Human temp = (Human) center;
+            offset =  temp.getCenter().substract(offsetFromCorner);
+        } else {
+            offset = center.getPosition().substract(offsetFromCorner);
+        }
         return offset;
     }
     
@@ -154,6 +166,7 @@ public class World {
         Graphics2D gg = (Graphics2D) g.create();
         gg.scale(SCALE, SCALE);
         gg.translate(Util.toPix(-offset.getX()), Util.toPix(-offset.getY()));
+        gg.setFont(gg.getFont().deriveFont((float) Util.toPix(1/8d)));
         WorldUtil.drawDevSpquares(gg);
         for(Layer l : Layer.values()){
             for(Drawable d : drawLayers.get(l)){
@@ -248,7 +261,11 @@ public class World {
     public Controller getController(){
         return controller;
     }
-    
+
+    public AIMaster getAiMaster(){
+        return aiMaster;
+    }
+
     /**
      * Adds an Object to its responding Lists
      * @param o the Object to add to this World

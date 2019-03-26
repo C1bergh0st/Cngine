@@ -22,7 +22,7 @@ public class DrawUtil {
 
     public static Rectangle2D.Double getViewPort(){
         Point2D.Double offset = Util.offset;
-        Vector dim = new Vector(Util.toUnits(1920), Util.toUnits(1080));
+        Vector dim = new Vector(Util.toUnits(Util.SCREEN.width), Util.toUnits(Util.SCREEN.height));
         //return new Rectangle2D.Double(0,0,Util.toPix(999),Util.toPix(999)d);
         return new Rectangle2D.Double(offset.x, offset.y, dim.x, dim.y);
     }

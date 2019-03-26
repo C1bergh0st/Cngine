@@ -45,10 +45,10 @@ public class PathFinder {
                         double dist1 = o1.getCenter().distance(n.getCenter());
                         double dist2 = o2.getCenter().distance(n.getCenter());
                         if (dist1 > dist2){
-                            return 1;
+                            return -1;
                         }
                         if (dist1 < dist2){
-                            return -1;
+                            return 1;
                         }
                         return 0;
                     }

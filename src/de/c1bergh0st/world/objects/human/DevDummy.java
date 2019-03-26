@@ -2,6 +2,7 @@ package de.c1bergh0st.world.objects.human;
 
 import de.c1bergh0st.damage.Team;
 import de.c1bergh0st.debug.Debug;
+import de.c1bergh0st.gamecode.MainGame;
 import de.c1bergh0st.geometry.Vector;
 import de.c1bergh0st.world.Direction;
 import de.c1bergh0st.world.World;
@@ -15,7 +16,7 @@ public class DevDummy extends Human{
     
     public void tick(){
         super.tick();
-        setDirection(direction.add(direction.turnLeft().multiply(0.04)));
+        //setDirection(direction.add(direction.turnLeft().multiply(0.04)));
     }
     
 
@@ -47,6 +48,12 @@ public class DevDummy extends Human{
     @Override
     public void move(Direction dir, double sqrsPerSecond) {
         Debug.sendErr("Dummys dont move!");
+    }
+
+    @Override
+    public void moveRelative(double sqrsPersecond) {
+        Vector change = direction.getUnitVector().multiply(sqrsPersecond / MainGame.TICKSPEED);
+        pos = pos.add(change);
     }
 
     @Override

@@ -9,14 +9,19 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 import de.c1bergh0st.debug.Debug;
+import de.c1bergh0st.debug.Util;
 
 public class Window extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private GamePanel gpanel;
+	private Dimension size;
 
 	public Window (String title, int width, int height){
 		super(title);
+		Util.TILESIZE = (int)(96 * (width / 1920d));
+		size = new Dimension(width, height);
+		Util.SCREEN = size;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension size = new Dimension(width+5, height+25);	//Adjusting for Border
 		try {
@@ -24,7 +29,7 @@ public class Window extends JFrame{
         } catch (IOException e) {
             e.printStackTrace();
         }
-		//setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		//setExtendedState(JFrame.MAXIMIZED_BOTH);
 		//setUndecorated(true);
 		setPreferredSize(size);
 		setMaximumSize(size);
@@ -56,6 +61,10 @@ public class Window extends JFrame{
 		else{
 			Debug.sendErr("Window.showLayout(str) only accepts {Menu; Game}");
 		}
+	}
+
+	public Dimension getSize(){
+		return size;
 	}
 	
 	public GamePanel getPanel(){

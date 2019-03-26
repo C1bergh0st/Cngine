@@ -1,8 +1,6 @@
 package de.c1bergh0st.debug;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -18,6 +16,8 @@ public class Util {
 	public static Color GREENTRANSPARENT = new Color(0,255,0,60);
 	public static Color BLUETRANSPARENT = new Color(0,0,255,60);
 	public static int TILESIZE = 96;
+	public static Dimension SCREEN;
+
 	public static Point2D.Double offset = new Point2D.Double(0, 0);
 	
 	public static int toPix(double units){

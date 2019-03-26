@@ -8,8 +8,12 @@ import de.c1bergh0st.world.objects.Door;
 import de.c1bergh0st.world.objects.Floor;
 import de.c1bergh0st.world.objects.Table;
 import de.c1bergh0st.world.objects.Wall;
+import de.c1bergh0st.world.objects.human.DevDummy;
+import de.c1bergh0st.world.objects.human.Human;
 import de.c1bergh0st.world.objects.human.Player;
+import de.c1bergh0st.world.objects.human.npc.AI;
 import de.c1bergh0st.world.objects.human.weapons.DevGun;
+import de.c1bergh0st.world.terminal.Commands;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
@@ -74,6 +78,10 @@ public class DevLoader implements WorldLoader{
             world.add(new Table(10,i));
         }
         world.add(new Table(new Vector(12,4), new Vector(0.1, 0.9)));
+
+
+        Commands.RELOADNODES.execute(world,"");
+
         /*
         world.add(new TextOverlay(2, 2, "UP"));
         world.add(new TextOverlay(2, 4, "RIGHT"));
@@ -87,7 +95,7 @@ public class DevLoader implements WorldLoader{
         te = new Door(3, 4, Direction.RIGHT, 100);
         te.interact();
         world.add(te);
-        te = new Door(3, 6, Direction.DOWN, 100);
+        te = new Door(3, 6, Direction.DOWN, 100);sds
         te.interact();
         world.add(te);
         te = new Door(3, 8, Direction.LEFT, 100);

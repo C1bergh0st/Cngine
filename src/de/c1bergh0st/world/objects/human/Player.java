@@ -40,6 +40,12 @@ public class Player extends Human{
     }
 
     @Override
+    public void moveRelative(double sqrsPersecond) {
+        Vector change = direction.getUnitVector().multiply(sqrsPersecond / MainGame.TICKSPEED);
+        pos = pos.add(change);
+    }
+
+    @Override
     public void performAction(Action action) {
         if(action == Action.USE && lastSucessfulUse + INTERACTIONDELAY < System.currentTimeMillis()){
             List<Interactable> interactables = world.getInteractables();

@@ -10,6 +10,7 @@ import de.c1bergh0st.world.objects.Table;
 import de.c1bergh0st.world.objects.Wall;
 import de.c1bergh0st.world.objects.human.DevDummy;
 import de.c1bergh0st.world.objects.human.Human;
+import de.c1bergh0st.world.objects.human.npc.AI;
 import de.c1bergh0st.world.objects.human.npc.Node;
 import de.c1bergh0st.world.objects.human.npc.NodeProvider;
 import de.c1bergh0st.world.objects.human.npc.PathFinder;
@@ -150,6 +151,35 @@ public enum Commands implements Command{
             } else{
                 Debug.send("no path found");
             }
+        }
+    }, AITEST("ai [a-zA-Z]+"){
+        @Override
+        public void execute(World world, String line) {
+            String name = Commands.separateLine(line)[0];
+            if(!world.getAiMaster().contains(name)){
+                Debug.send("Ai " + name +" does not exist");
+                return;
+            }
+            Vector start = world.getController().getTarget().getCenter();
+            world.getAiMaster().get(name).moveTo(start);
+        }
+    }
+    , AISPAWN("aispawn [a-zA-Z]+" + Command.SEPARATOR + Command.POSITIVENUMBER + Command.SEPARATOR + Command.POSITIVENUMBER){
+        @Override
+        public void execute(World world, String line) {
+            String[] args = Commands.separateLine(line);
+            String name = args[0];
+            Integer x = Integer.parseInt(args[1]);
+            Integer y = Integer.parseInt(args[2]);
+            if(world.getAiMaster().contains(name)){
+                Debug.send("Ai " + name +" already not exist");
+                return;
+            }
+            Human te = new DevDummy(new Vector(x, y), world);
+            AI ai = new AI(world, te);
+            world.getAiMaster().add(name, ai);
+            world.add(ai);
+            world.add(te);
         }
     };
 
