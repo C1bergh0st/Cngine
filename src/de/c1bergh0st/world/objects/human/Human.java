@@ -61,8 +61,10 @@ public abstract class Human extends PhysicalActive implements Collisions, HitBox
     }
 
     public void equipWeaponSlot(int i){
-        currWeapon = weapons.get(i);
-        Debug.send("Equiping " + currWeapon.getClass().getSimpleName() + " in slot " + i);
+        if(currWeapon != weapons.get(i)){
+            currWeapon = weapons.get(i);
+            Debug.send("Equiping " + currWeapon.getClass().getSimpleName() + " in slot " + i);
+        }
     }
 
     public int equipWeapon(Weapon w){
