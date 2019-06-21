@@ -34,10 +34,10 @@ public class AI implements Tickable {
         if(path != null){
             last = new DevPath(path);
             world.add(last);
+            movementQ.addAll(path);
         } else{
             Debug.send("no path found");
         }
-        movementQ.addAll(path);
     }
 
 
