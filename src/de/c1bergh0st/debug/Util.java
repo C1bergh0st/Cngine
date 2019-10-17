@@ -15,11 +15,18 @@ public class Util {
 	public static Color REDTRANSPARENT = new Color(255,0,0,60);
 	public static Color GREENTRANSPARENT = new Color(0,255,0,60);
 	public static Color BLUETRANSPARENT = new Color(0,0,255,60);
+	public static int BASETILESIZE = 96;
+	public static double PRESCALER = 1;
+	public static double ZOOM = 1;
 	public static int TILESIZE = 96;
 	public static Dimension SCREEN;
 
 	public static Point2D.Double offset = new Point2D.Double(0, 0);
-	
+
+	public static void refreshTilesize(){
+		TILESIZE = (int)(BASETILESIZE * PRESCALER * ZOOM);
+	}
+
 	public static int toPix(double units){
 		return (int)(units * TILESIZE);
 	}

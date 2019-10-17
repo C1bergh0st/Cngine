@@ -24,7 +24,7 @@ public class DevLoader implements WorldLoader{
         //String wall = "tiles/dev.png";
         //String floor = "tiles/dev_floor.png";
         //String floor2 = "tiles/dev_floor_alt.png";
-        String wall = "tiles/wall.png";
+        String wall = "tiles/dev.png";
         String floor = "tiles/floor.png";
         String floor2 = "tiles/floor.png";
         Player p = new Player(4,3, world);

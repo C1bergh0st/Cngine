@@ -17,9 +17,11 @@ public class Window extends JFrame{
 	private GamePanel gpanel;
 	private Dimension size;
 
-	public Window (String title, int width, int height){
+	public Window (String title, int width, int height, double preferredZoom){
 		super(title);
-		Util.TILESIZE = (int)(96 * (width / 1920d));
+		Util.PRESCALER = width / 1920d;
+		Util.ZOOM = preferredZoom;
+		Util.refreshTilesize();
 		size = new Dimension(width, height);
 		Util.SCREEN = size;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

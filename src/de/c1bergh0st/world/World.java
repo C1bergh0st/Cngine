@@ -164,7 +164,7 @@ public class World {
         Point2D.Double offset = getOffset();
         Util.offset = offset;
         Graphics2D gg = (Graphics2D) g.create();
-        gg.scale(SCALE, SCALE);
+        //gg.scale(Util.ZOOM, Util.ZOOM);
         gg.translate(Util.toPix(-offset.getX()), Util.toPix(-offset.getY()));
         gg.setFont(gg.getFont().deriveFont((float) Util.toPix(1/8d)));
         WorldUtil.drawDevSpquares(gg);

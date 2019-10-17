@@ -16,6 +16,7 @@ public class DrawUtil {
         if(transform == null){
             transform = new AffineTransform();
             transform.scale(Util.toPix(1), Util.toPix(1));
+            //transform.scale(30, 30);
         }
         return transform;
     }

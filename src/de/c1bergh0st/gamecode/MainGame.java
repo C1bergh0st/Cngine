@@ -29,6 +29,7 @@ public class MainGame extends Canvas implements Runnable{
     private GamePanel gamepanel;
 	
 	//Lower level varaiables
+	private long startLoad;
 	public boolean shouldRun;
 	public boolean showFPS;
 	private long frames;
@@ -52,10 +53,6 @@ public class MainGame extends Canvas implements Runnable{
 		shouldRun = true;
 		showFPS = true;
 		parent = p;
-		textures = Statics.getImageProvider();
-		audio = new AudioController();
-		world = new World(this);
-		new DevLoader().load(world);
 	}
 	
 	public void load(WorldLoader loader){
@@ -76,7 +73,7 @@ public class MainGame extends Canvas implements Runnable{
 		long fpsTimer = System.currentTimeMillis();
 		double delta = 0;
 		double lastTime = System.nanoTime();
-		Debug.send("Mainloop startet at:"+System.nanoTime());
+		Debug.send("Mainloop startet at:"+System.nanoTime() + " took " + (System.nanoTime() - startLoad) / 1000000 + "ms to load");
 		while(shouldRun){
 			long now = System.nanoTime();
  			delta += (now - lastTime) / NSPERTICK;
@@ -102,7 +99,10 @@ public class MainGame extends Canvas implements Runnable{
 	
 	private void init() {
 		drawLoadingScreen();
-		
+		textures = Statics.getImageProvider();
+		audio = new AudioController();
+		world = new World(this);
+		new DevLoader().load(world);
 	}
 
 	private void drawLoadingScreen() {
@@ -115,6 +115,7 @@ public class MainGame extends Canvas implements Runnable{
 		applySettings(g);
 		g.dispose();
 		bs.show();
+		startLoad = System.nanoTime();
 		Debug.send("Loadingscreen shown at"+System.nanoTime());
 	}
 

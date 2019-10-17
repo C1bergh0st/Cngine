@@ -15,7 +15,7 @@ public static final String ABOUTURL = "https://github.com/C1bergh0st";
 		double scaling = 1;
 		int width = (int)(1920 * scaling);
 		int height = (int)(1080 * scaling);
-		new Window("Creon", width, height);
+		new Window("Creon", width, height, scaling);
 		//new Window("Creon",3840,2160);
 	}
 
