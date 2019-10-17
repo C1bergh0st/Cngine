@@ -28,7 +28,7 @@ public class AI implements Tickable {
         speed = 4;
     }
 
-    @SuppressWarnings("Duplicates")
+
     public void moveTo(Vector goal){
         List<Vector> path = new PathFinder(world.getNodeProvider()).getPath(target.getCenter(), goal);
         if(path != null){

@@ -22,9 +22,7 @@ public class DevBullet extends Bullet{
         this.dir = direction;
         this.damage = dmg;
         this.team = Team.GOOD;
-        if(!isSafe()){
-            Debug.send("Unsafe bullet fired");
-        }
+
     }
     
     
