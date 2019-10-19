@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import de.c1bergh0st.debug.Util;
 import de.c1bergh0st.game.image.Statics;
 
 public class Menu extends JPanel {
@@ -36,9 +37,10 @@ public class Menu extends JPanel {
 		setLayout(null);
 		
 		JPanel middle = new JPanel();
-		middle.setBounds(640, 0, 640, 1080);
+		middle.setBounds((int)(640 * Util.PRESCALER), 0, (int)(640 * Util.PRESCALER), (int)(1080 * Util.PRESCALER));
 		add(middle);
-		middle.setBackground(new Color(0,0,0,0));
+		//middle.setBackground(new Color(0,0,0,0));
+		middle.setBackground(Color.PINK);
 		middle.setLayout(null);
 		
 		JButton button1 = new JButton("Start");
@@ -49,7 +51,7 @@ public class Menu extends JPanel {
 			}
 		});
 		button1.setEnabled(false);
-		button1.setLocation(200, 500);
+		button1.setLocation((int)(200 * Util.PRESCALER), (int)(500 * Util.PRESCALER));
 		button1.setSize(240, 60);
 		button1.setBackground(new Color(59, 89, 182));
 		button1.setForeground(Color.WHITE);
@@ -70,7 +72,7 @@ public class Menu extends JPanel {
 		button3.setFocusPainted(false);
 		button3.setEnabled(false);
 		button3.setBackground(new Color(59, 89, 182));
-		button3.setBounds(200, 600, 240, 60);
+		button3.setBounds((int)(200 * Util.PRESCALER), (int)(600 * Util.PRESCALER), 240, 60);
 		middle.add(button3);
 		
 		JButton button4 = new JButton("Exit");
@@ -91,7 +93,7 @@ public class Menu extends JPanel {
 		button4.setFocusPainted(false);
 		button4.setEnabled(false);
 		button4.setBackground(new Color(59, 89, 182));
-		button4.setBounds(200, 700, 240, 60);
+		button4.setBounds((int)(200 * Util.PRESCALER), (int)(700 * Util.PRESCALER), 240, 60);
 		middle.add(button4);
 		
 		JLabel label = new JLabel("", image, JLabel.CENTER);

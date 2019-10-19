@@ -20,6 +20,7 @@ public class Window extends JFrame{
 	public Window (String title, int width, int height, double preferredZoom){
 		super(title);
 		Util.PRESCALER = width / 1920d;
+		Debug.send("Prescaler was determined to be: " + Util.PRESCALER, 1);
 		Util.ZOOM = preferredZoom;
 		Util.refreshTilesize();
 		size = new Dimension(width, height);

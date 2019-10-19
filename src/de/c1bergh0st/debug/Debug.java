@@ -7,12 +7,21 @@ import java.awt.image.BufferedImage;
 
 public class Debug {
 	private static boolean debugactive = true;
+	private static int debuglevel = 3;
 	
 	public static void send(String str){
 		if(debugactive){
 			System.out.println(str);
 		}
 	}
+
+
+	public static void send(String str, int level){
+		if(level <= debuglevel){
+			send(str);
+		}
+	}
+
 
 
 	public static void send(Object o){

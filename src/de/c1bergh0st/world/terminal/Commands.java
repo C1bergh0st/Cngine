@@ -1,13 +1,11 @@
 package de.c1bergh0st.world.terminal;
 
 import de.c1bergh0st.debug.Debug;
-import de.c1bergh0st.debug.Util;
 import de.c1bergh0st.geometry.Vector;
 import de.c1bergh0st.world.World;
 import de.c1bergh0st.world.loader.DevLoader;
 import de.c1bergh0st.world.objects.DevPath;
 import de.c1bergh0st.world.objects.DevPoint;
-import de.c1bergh0st.world.objects.Table;
 import de.c1bergh0st.world.objects.Wall;
 import de.c1bergh0st.world.objects.human.DevDummy;
 import de.c1bergh0st.world.objects.human.Human;
