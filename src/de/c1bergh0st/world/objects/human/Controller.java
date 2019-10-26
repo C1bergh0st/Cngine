@@ -16,6 +16,7 @@ import de.c1bergh0st.world.objects.human.Action;
 import de.c1bergh0st.world.objects.human.Human;
 
 public class Controller implements Tickable{
+    public static double MOVESPEEDMULT = 1.35;
     private Human target;
     private InputHandler input;
     private MainGame engine;
@@ -51,7 +52,7 @@ public class Controller implements Tickable{
         if(target != null){
             double speed = 3;
             if(input.isDown("shift")){
-                speed = speed * 1.5;
+                speed = speed * MOVESPEEDMULT;
             }
             if(input.isDown("use")){
                 target.performAction(Action.USE);
@@ -74,6 +75,11 @@ public class Controller implements Tickable{
             if(input.isClicked(InputHandler.LEFTCLICK)){
                 target.performAction(Action.SHOOT);
             }
+            if(input.isClicked(InputHandler.RIGHTCLICK)){
+                target.performAction(Action.PHASE);
+            }
+
+
             if(input.isDown("space")){
                 world.setPaused(true);
             }

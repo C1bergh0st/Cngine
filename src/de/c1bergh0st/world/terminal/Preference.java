@@ -4,7 +4,8 @@ public enum Preference {
     I_DISPLAY_RES_X(1920),
     I_DISPLAY_RES_Y(1080),
     D_DISPLAY_PRESCALER(1),
-    D_DISPLAY_ZOOM(1);
+    D_DISPLAY_ZOOM(1),
+    B_DEVDRAW(true);
 
     Preference(Object standard){
         defaultValue = standard.toString();

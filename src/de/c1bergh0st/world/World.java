@@ -29,6 +29,8 @@ import de.c1bergh0st.world.objects.human.npc.Edge;
 import de.c1bergh0st.world.objects.human.npc.Node;
 import de.c1bergh0st.world.objects.human.npc.NodeProvider;
 import de.c1bergh0st.world.terminal.CLI;
+import de.c1bergh0st.world.terminal.Configuration;
+import de.c1bergh0st.world.terminal.Preference;
 
 @SuppressWarnings("Duplicates")
 public class World {
@@ -41,6 +43,7 @@ public class World {
     private List<Interactable> interactables;
     private List<Solid> solids;
     private List<Object> removalList;
+    private List<Object> addList;
     private Wall[][] walls;
     private Active center;
     private MainGame game;
@@ -48,7 +51,7 @@ public class World {
     private CLI commandLine;
     private NodeProvider nodeProvider;
     private AIMaster aiMaster;
-    public static boolean devDraw = true;
+    public static boolean devDraw;
     private boolean paused;
     
     public World(MainGame game){
@@ -61,6 +64,7 @@ public class World {
             drawLayers.put(l, new LinkedList<>());
         }
         removalList = new LinkedList<>();
+        addList = new LinkedList<>();
         collisionables = new LinkedList<>();
         hitboxes = new LinkedList<>();
         interactables = new LinkedList<>();
@@ -71,6 +75,8 @@ public class World {
         aiMaster = new AIMaster();
 
         commandLine = new CLI();
+
+        devDraw = Boolean.parseBoolean(Configuration.getValue(Preference.B_DEVDRAW));
     }
     
     
@@ -304,6 +310,10 @@ public class World {
             removalList.add(o);
         }
     }
+
+    public void safeAdd(Object o){
+        addList.add(o);
+    }
     
     private void addDrawable(Drawable d){
         Layer l = d.getLayer();
@@ -345,6 +355,10 @@ public class World {
             }
         }
         removalList.clear();
+        for(Object o : addList){
+            add(o);
+        }
+        addList.clear();
     }
     
     private void destroyWall(int x, int y){

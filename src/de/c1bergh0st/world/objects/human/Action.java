@@ -4,7 +4,8 @@ public enum Action {
     USE,
     SHOOT,
     RELOAD,
-    CHANGE_WEAPON
+    CHANGE_WEAPON,
+    PHASE
 
 
 }
